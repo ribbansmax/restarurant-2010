@@ -8,7 +8,7 @@ class Restaurant
   end
 
   def closing_time(int)
-    # given a number of hours, this returns the hours + opening time in 24 hour format. Known issue if past idnight
+    # given a number of hours, this returns the hours + opening time in 24 hour format. Known issue if past idnight. Could be fixed with modulo in future versions.
     # this if statement solves an issue if the opening_time has a time that is either "6:00" or "06:00"
     if @opening_time[0,2].to_i >=10 || @opening_time[0,1].to_i == 0
       (@opening_time[0,2].to_i + int).to_s + @opening_time[2,3]
@@ -39,6 +39,7 @@ class Restaurant
 
   def convert_to_12_hour(time)
     # given time as a string, this returns a string in the 12 format with AM or PM added
+    # This should have been done with a form of modulo, but currently only works if closing time is before 12AM the next day
     temp = time[0,2].to_i
     if temp > 12 && temp < 24
       (temp - 12).to_s + time[2,3] + "PM"
