@@ -22,4 +22,12 @@ class Restaurant
       false
     end
   end
+
+  def menu_dish_names
+    menu = []
+    @dishes.each do |dish|
+      menu << dish.upcase
+    end
+    menu
+  end
 end
