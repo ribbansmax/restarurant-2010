@@ -8,7 +8,11 @@ class Restaurant
   end
 
   def closing_time(int)
-    (@opening_time[0,2].to_i + int).to_s + @opening_time[2,3]
+    if @opening_time[0,2].to_i >=10
+      (@opening_time[0,2].to_i + int).to_s + @opening_time[2,3]
+    else
+      (@opening_time[0,2].to_i + int).to_s + @opening_time[1,3]
+    end 
   end
 
   def add_dish(dish)
@@ -29,5 +33,18 @@ class Restaurant
       menu << dish.upcase
     end
     menu
+  end
+
+  def convert_to_12_hour(time)
+    temp = time[0,2].to_i
+    if temp > 12
+      (temp - 12).to_s + time[2,3] + "PM"
+    else
+      "#{time}AM"
+    end
+  end
+
+  def announce_closing_time(time)
+    "#{name} will be closing at #{convert_to_12_hour(closing_time(time))}"
   end
 end
