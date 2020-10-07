@@ -8,11 +8,12 @@ class Restaurant
   end
 
   def closing_time(int)
-    if @opening_time[0,2].to_i >=10
+    # this if statement solves an issue if the opening_time has a time that is either "6:00" or "06:00"
+    if @opening_time[0,2].to_i >=10 || @opening_time[0,1].to_i == 0
       (@opening_time[0,2].to_i + int).to_s + @opening_time[2,3]
     else
       (@opening_time[0,2].to_i + int).to_s + @opening_time[1,3]
-    end 
+    end
   end
 
   def add_dish(dish)
