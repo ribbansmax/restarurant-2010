@@ -40,12 +40,14 @@ class Restaurant
   def convert_to_12_hour(time)
     # given time as a string, this returns a string in the 12 format with AM or PM added
     temp = time[0,2].to_i
-    if temp > 12 && temp <= 24
+    if temp > 12 && temp < 24
       (temp - 12).to_s + time[2,3] + "PM"
     elsif temp == 12
       "#{time}PM"
     elsif temp < 12
       "#{time}AM"
+    elsif temp == 24
+      (temp - 12).to_s + time[2,3] + "AM"
     else
       (temp - 24).to_s + time[2,3] + "AM"
     end
